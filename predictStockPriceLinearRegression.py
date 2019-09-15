@@ -49,8 +49,9 @@ print(stock_data.info())
 
 print(stock_data.describe())
 
-plt.figure(1)
+fig = plt.figure(1)
 corr = stock_data.corr()
+fig.canvas.set_window_title('Heatmap') 
 sns.heatmap(corr, annot=True)
 
 df_test = stock_data[-20:]
@@ -67,6 +68,7 @@ ax = plt.subplot(111)
 ax.plot(df_train['Adj_Close'], label='Train')
 ax.plot(df_test['Adj_Close'], label='Valid')
 ax.legend()
+fig.canvas.set_window_title('Visa stock 2017-2018') 
 # plt.show()
 
 
@@ -122,6 +124,8 @@ ax = plt.subplot(111)
 ax.plot(y_test.index, y_pred_lr, label='Predicted')
 ax.plot(y_test, label='Test')
 ax.legend()
+fig.suptitle("Root Mean Squared Error: {}".format(np.sqrt(mse)))
+fig.canvas.set_window_title('Linear Regression Model') 
 # plt.show()
 
 # XGBoost
@@ -149,6 +153,8 @@ ax = plt.subplot(111)
 ax.plot(y_test.index, y_pred_xgb, label='Predicted')
 ax.plot(y_test, label='Test')
 ax.legend()
+fig.suptitle("Root Mean Squared Error: {}".format(np.sqrt(mse)))
+fig.canvas.set_window_title('XGBoost Model') 
 # plt.show()
 
 # Keras LSTM
@@ -166,21 +172,9 @@ ax = plt.subplot(111)
 ax.plot(y_test.index, y_pred_ridge, label='Predicted')
 ax.plot(y_test, label='Test')
 ax.legend()
+fig.suptitle("Root Mean Squared Error: {}".format(np.sqrt(mse)))
+fig.canvas.set_window_title('Ridge Regression Model')
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
